@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-from typing import List
 """
 This module contains the sum_list function
 """
+from typing import List
 
 floatList = List[float]
 
