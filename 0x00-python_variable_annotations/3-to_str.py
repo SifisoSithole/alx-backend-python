@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """
 this module contains the to_str function
+
+the to_str function returns the string represantation of a float
 """
 
 
