@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """
 This model contains annotated variables:
     a (int): an integer with a value of 1
