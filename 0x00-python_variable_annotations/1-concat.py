@@ -17,7 +17,7 @@ def concat(str1: str, str2: str) -> str:
         str: concatenated string
     """
 
-    if not isinstance(str0, str):
+    if not isinstance(str1, str):
         raise TypeError('str1 must be a string')
 
     if not isinstance(str2, str):
