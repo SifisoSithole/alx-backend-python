@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
 
-from unittest import TestCase
+from unittest import TestCase, mock
 from typing import Mapping, Sequence, Union
-from utils import access_nested_map
+from utils import access_nested_map, get_json
 from parameterized import parameterized
 
 
@@ -74,3 +74,43 @@ class TestAccessNestedMap(TestCase):
         with self.assertRaises(KeyError) as error:
             access_nested_map(nested_map, path)
             self.assertEqual(wrong_output, error.exception)
+
+
+class TestGetJson(TestCase):
+    """
+    The TestGetJson class contains unit tests for the get_json() function.
+    """
+
+    @parameterized.expand([
+        ("http://example.com", {"payload": True}),
+        ("http://holberton.io", {"payload": False})
+    ])
+    def test_get_json(self, url: str, payload: Mapping):
+        """Test the get_json function by mocking the requests.get method.
+
+        Parameters
+        ----------
+        url : str
+            The URL to send the GET request to.
+        payload : Mapping
+            The expected JSON payload returned by the request.
+
+        Raises
+        ------
+        AssertionError
+            If the response from get_json() does not
+            match the expected payload.
+        """
+        # Mock the requests.get() method to return the specified payload.
+        response = mock.Mock()
+        response.json.return_value = payload
+        with mock.patch('requests.get', return_value=response):
+            # Call the get_json() method with the specified URL.
+            real_response = get_json(url)
+
+            # Check that the returned payload matches the expected payload.
+            self.assertEqual(real_response, payload)
+
+            # Check that the json() method was called exactly once on
+            # the response object.
+            response.json.assert_called_once()
