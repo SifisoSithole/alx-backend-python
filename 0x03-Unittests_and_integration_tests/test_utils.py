@@ -45,11 +45,11 @@ class TestAccessNestedMap(TestCase):
         self.assertEqual(output, expected_output)
 
     @parameterized.expand([
-        ({}, ("a",), 'a'),
-        ({"a": 1}, ("a", "b"), 'b')
+        ({}, ("a",), 'c'),
+        ({"a": 1}, ("a", "b"), 'd')
     ])
     def test_access_nested_map_exception(
-        self, nested_map: Mapping, path: Sequence, wrong_output: str
+        self, nested_map: Mapping, path: Sequence, wrong_output
     ):
         """
         Test that accessing a non-existent key in
@@ -71,6 +71,6 @@ class TestAccessNestedMap(TestCase):
             If the function does not raise a KeyError
             with the expected wrong output.
         """
-        with self.assertRaises(KeyError) as e:
+        with self.assertRaises(KeyError) as error:
             access_nested_map(nested_map, path)
-            self.assertEqual(wrong_output, e.exception)
+            self.assertEqual(wrong_output, error.exception)
