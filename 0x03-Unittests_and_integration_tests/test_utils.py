@@ -117,6 +117,9 @@ class TestGetJson(TestCase):
 
 
 class TestMemoize(TestCase):
+    """
+    test memoization
+    """
 
     def test_memoize(self):
 
