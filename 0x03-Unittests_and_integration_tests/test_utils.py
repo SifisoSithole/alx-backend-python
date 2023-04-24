@@ -115,11 +115,10 @@ class TestGetJson(TestCase):
             # the response object.
             response.json.assert_called_once()
 
+
 class TestMemoize(TestCase):
-    
 
     def test_memoize(self):
- 
 
         class TestClass:
             """ Test class """
@@ -133,7 +132,8 @@ class TestMemoize(TestCase):
                 """ Returns memoized property """
                 return self.a_method()
 
-        with mock.patch.object(TestClass, 'a_method', return_value=42) as patched:
+        with mock.patch.object(
+                TestClass, 'a_method', return_value=42) as patched:
             test_class = TestClass()
             real_return = test_class.a_property
             real_return = test_class.a_property
